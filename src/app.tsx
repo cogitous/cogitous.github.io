@@ -1,7 +1,7 @@
-import Banner from './component/Hero';
-import WhyUs from './component/FeatureGrid';
-import CanDo from './component/Feature';
-import Contact from './component/Contact';
+import Banner from './component/Banner';
+import WhyUs from './component/WhyUs';
+import OurStory from './component/OurStory';
+import ContactUs from './component/ContactUs';
 
 export function App() {
 
@@ -9,8 +9,8 @@ export function App() {
     <>
       <Banner />
       <WhyUs />
-      <CanDo />
-      <Contact />
+      <OurStory />
+      <ContactUs />
     </>
   )
 }
