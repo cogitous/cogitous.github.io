@@ -5,3 +5,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+button[disabled='true']{
+  /* pointer-events: none; */
+  
+}

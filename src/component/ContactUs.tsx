@@ -1,23 +1,48 @@
-import { useRef } from "react";
+import { CheckBadgeIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import { useRef, useState } from "react";
 import { getClient } from "../supabase";
 
-export default function Contact() {
+const SuccessIcon =
+  <CheckBadgeIcon className="absolute top-2.7 left-0 h-5 w-5 text-indigo-600" aria-hidden="true" />;
+const FailureIcon =
+  <XCircleIcon className="absolute top-2.7 left-0 h-5 w-5 text-orange-600" aria-hidden="true" />;
+
+export default function ContactUs() {
   const formRef = useRef<HTMLFormElement>(null);
+  const [formSubmitState, setFormSubmitState] = useState<{ message?: string, icon?: unknown }>({});
+  const [inflight, setInflight] = useState(false);
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
 
-    const formInputs = formRef.current?.querySelectorAll('input, textarea');
-    const send = Array.from(formInputs || []).reduce((col, el) => {
-      const { name, value } = el;
-      if (value) col[name] = value;
+    const formInputs: HTMLInputElement[] = Array.from(formRef.current?.querySelectorAll('input, textarea') || []);
+    const send = formInputs.reduce((object, input) => {
+      const { name, value } = input;
+      if (value) object[name] = value;
 
-      return col;
-    }, {});
+      return object;
+    }, {} as Record<string, string>);
     
-    console.log('Send:', send);
-
-    getClient().from('contact').insert([send]).then(x => console.log(x));
+    setInflight(true);
+    getClient()
+      .from('contact')
+      .insert([send])
+      .then(({ error, data }) => {
+        setInflight(false);
+        if (error) {
+          setFormSubmitState({
+            ...formSubmitState,
+            message: 'Could not send your message. Please try later.',
+            icon: FailureIcon,
+          })
+        } else {
+          setFormSubmitState({
+            ...formSubmitState,
+            message: 'Your message has been devilered.',
+            icon: SuccessIcon,
+          })
+        }
+      });
   };
 
   return (
@@ -95,10 +120,16 @@ export default function Contact() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 flex justify-between">
+                  <div className="relative pl-7 flex items-center">
+                    { formSubmitState.icon }
+                    <span className="inline text-left font-base">{formSubmitState.message}</span>
+                  </div>
+ 
                   <button
                     type="submit"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    disabled={inflight}
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-400"
                   >
                     Send
                   </button>
