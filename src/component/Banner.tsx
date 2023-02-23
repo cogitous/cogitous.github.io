@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const navigation = [
-  { name: 'Portfolio', href: '/portfolio' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Career', href: '/career' },
-]
+const navigation = [];
+
+// const navigation = [
+//   { name: 'Portfolio', href: '/portfolio' },
+//   { name: 'Pricing', href: '/pricing' },
+//   { name: 'Blog', href: '/blog' },
+//   { name: 'Career', href: '/career' },
+// ]
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -43,8 +45,8 @@ export default function Hero() {
         <nav className="flex items-center justify-between" aria-label="Global">
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
-              <img className="h-10" src="/cogitous-logo.svg" alt="" />
-              <span className="text-xl">Cogitous Technology</span>
+              <img className="h-8" src="/cogitous-logo.svg" alt="" />
+              <span className="text-md font-medium">Cogitous Technology</span>
             </a>
           </div>
           <div className="flex lg:hidden">
@@ -73,9 +75,9 @@ export default function Hero() {
         <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
           <Dialog.Panel focus="true" className="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img className="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+              <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
+                <img className="h-8" src="/cogitous-logo.svg" alt="" />
+                <span className="text-md font-medium">Cogitous Technology</span>
               </a>
               <button
                 type="button"
@@ -99,11 +101,6 @@ export default function Hero() {
                     </a>
                   ))}
                 </div>
-                <div className="py-6">
-                  <div className="flex flex-1 justify-end">
-                    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Contact us</button>
-                  </div>
-                </div>
               </div>
             </div>
           </Dialog.Panel>
@@ -113,11 +110,11 @@ export default function Hero() {
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
             <div className="text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-7xl">
                 Extend your software team with top talents.
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Let us help you extend your team.
+                Hire remote developers without spending hours. Gain access to top developers and extend your engineering team with ease.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a

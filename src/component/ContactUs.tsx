@@ -46,7 +46,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div id="contact-us" className="overflow-hidden bg-white py-24 sm:py-32">
+    <div id="contact-us" className="overflow-hidden bg-white py-24 sm:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="md:grid md:grid-cols-5 md:gap-6">
           <div className="md:col-span-2">
