@@ -1,5 +1,5 @@
 import { CheckBadgeIcon, XCircleIcon } from "@heroicons/react/20/solid";
-import { useRef, useState } from "react";
+import { useRef, useState } from "preact/hooks";
 import { getClient } from "../supabase";
 
 const SuccessIcon =

@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState } from 'preact/hooks'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const navigation = [];
+type Navigation = { name: string, href: string };
+const navigation: Navigation[] = [];
 
-// const navigation = [
+// const navigation: Navigation[] = [
 //   { name: 'Portfolio', href: '/portfolio' },
 //   { name: 'Pricing', href: '/pricing' },
 //   { name: 'Blog', href: '/blog' },
